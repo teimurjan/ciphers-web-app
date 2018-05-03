@@ -1,7 +1,5 @@
 import numpy as np
-import string
 
-alphabet = list(string.ascii_lowercase)
 
 def egcd(a, b):
     if a == 0:
@@ -42,11 +40,15 @@ def get_minor_matrix(matrix, i, j):
         p = p + 1
     return minor
 
-def get_shifted_index(letter, padding):
+
+def get_shifted_index(letter, padding, alphabet):
     return (alphabet.index(letter) + padding) % len(alphabet)
 
-def get_lower_shifted_letter(letter, padding):
-    return alphabet[get_shifted_index(letter, padding)]
 
-def get_shifted_letter(letter, padding):
-    return get_lower_shifted_letter(letter, padding) if letter.islower() else get_lower_shifted_letter(letter.lower(), padding).upper()
+def get_lower_shifted_letter(letter, padding, alphabet):
+    return alphabet[get_shifted_index(letter, padding, alphabet)]
+
+
+def get_shifted_letter(letter, padding, alphabet):
+    shifted_letter = get_lower_shifted_letter(letter.lower(), padding, alphabet)
+    return shifted_letter if letter.islower() else shifted_letter.upper()
