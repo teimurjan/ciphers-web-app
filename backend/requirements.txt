@@ -1,6 +1,7 @@
 click==6.7
 Flask==1.0
 Flask-Script==2.0.6
+flask-cors==3.0.4
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
