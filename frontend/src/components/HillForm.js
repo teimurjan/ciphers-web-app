@@ -43,11 +43,11 @@ class HillForm extends Component {
 
   onChangeMatrix = (rowIndex) => (index) => (e) => {
     const value = e.target.value;
-    const isNumeric = isNumeric(value);
+    const isValueNumeric = isNumeric(value);
     this.setState((prevState) => {
       const values = prevState.values.map((row) => [...row]);
-      values[rowIndex][index] = value && isNumeric ? parseInt(value, 10) : value;
-      return ({ values, isNumeric });
+      values[rowIndex][index] = value && isValueNumeric ? parseInt(value, 10) : value;
+      return ({ values, isNumeric: isValueNumeric });
     });
   };
 
