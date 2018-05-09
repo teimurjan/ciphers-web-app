@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { encryptAffine } from '../api';
+import { encryptAffine } from '../../../api';
 import { Form, Input } from 'semantic-ui-react';
-import InputCipher from './common/InputOutputCipher';
-import { isNumeric } from '../utils/number';
+import InputOutputCipher from './../../common/InputOutputCipher';
+import { isNumeric } from '../../../utils/number';
 
-class CaesarForm extends Component {
+class AffineEncryptForm extends Component {
   state = {
     inputText: '',
     outputText: '',
@@ -41,13 +41,13 @@ class CaesarForm extends Component {
         <Form onSubmit={this.onSubmit}>
           <Input placeholder='A' onChange={this.onKeyChange('a')} value={this.state.key.a}/>
           <Input placeholder='B' onChange={this.onKeyChange('b')} value={this.state.key.b}/>
-          <InputCipher outputText={this.state.outputText}
-                       inputText={this.state.inputText}
-                       onTextChange={this.onChangeInputText}/>
+          <InputOutputCipher outputText={this.state.outputText}
+                             inputText={this.state.inputText}
+                             onTextChange={this.onChangeInputText}/>
         </Form>
       </div>
     );
   }
 }
 
-export default CaesarForm;
+export default AffineEncryptForm;

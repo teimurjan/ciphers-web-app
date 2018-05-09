@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { encryptCaesar } from '../api';
+import { encryptCaesar } from '../../../api';
 import { Form, Input } from 'semantic-ui-react';
-import InputCipher from './common/InputOutputCipher';
+import InputOutputCipher from './../../common/InputOutputCipher';
 
-class CaesarForm extends Component {
+class CaesarEncryptForm extends Component {
   state = {
     inputText: '',
     padding: '',
@@ -27,13 +27,13 @@ class CaesarForm extends Component {
       <div>
         <Form onSubmit={this.onSubmit}>
           <Input placeholder='Padding' onChange={this.onChange('padding')} value={this.state.padding}/>
-          <InputCipher outputText={this.state.outputText}
-                       inputText={this.state.inputText}
-                       onTextChange={this.onChange('inputText')}/>
+          <InputOutputCipher outputText={this.state.outputText}
+                             inputText={this.state.inputText}
+                             onTextChange={this.onChange('inputText')}/>
         </Form>
       </div>
     );
   }
 }
 
-export default CaesarForm;
+export default CaesarEncryptForm;

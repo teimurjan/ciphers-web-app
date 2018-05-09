@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Tab } from 'semantic-ui-react';
-import VigenereForm from './components/VigenereForm';
-import CaesarForm from './components/CaesarForm';
-import HillForm from './components/HillForm';
-import AffineForm from './components/AffineForm';
+import VigenereTab from './components/scenes/Vigenere/VigenereTab';
+import CaesarTab from './components/scenes/Caesar/CaesarTab';
+import HillTab from './components/scenes/Hill/HillTab';
+import AffineTab from './components/scenes/Affine/AffineTab';
 
 const panes = [
-  { menuItem: 'Caesar', render: () => <Tab.Pane><CaesarForm/></Tab.Pane> },
-  { menuItem: 'Vigenere', render: () => <Tab.Pane><VigenereForm/></Tab.Pane> },
-  { menuItem: 'Affine', render: () => <Tab.Pane><AffineForm/></Tab.Pane> },
-  { menuItem: 'Hill', render: () => <Tab.Pane><HillForm/></Tab.Pane> }
+  { menuItem: 'Caesar', render: () => <Tab.Pane><CaesarTab/></Tab.Pane> },
+  { menuItem: 'Vigenere', render: () => <Tab.Pane><VigenereTab/></Tab.Pane> },
+  { menuItem: 'Affine', render: () => <Tab.Pane><AffineTab/></Tab.Pane> },
+  { menuItem: 'Hill', render: () => <Tab.Pane><HillTab/></Tab.Pane> }
 ];
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
       <div className="App">
         <Tab panes={panes}/>
       </div>
-    );
+    )
   }
 }
 

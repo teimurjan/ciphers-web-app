@@ -1,29 +1,12 @@
 import React, { Component } from 'react';
-import { encryptHill } from '../api';
-import { Form, Grid, Input } from 'semantic-ui-react';
-import InputCipher from './common/InputOutputCipher';
-import { isNumeric } from '../utils/number';
+import { encryptHill } from '../../../api';
+import { Form } from 'semantic-ui-react';
+import InputOutputCipher from './../../common/InputOutputCipher';
+import { isNumeric } from '../../../utils/number';
+import Matrix from '../../common/Matrix';
 
 
-const MatrixInput = ({ onChange, value }) => <Input value={value} fluid onChange={onChange}/>;
-
-const MatrixRow = ({ onChangeMaker, values }) =>
-  <Grid.Row>
-    {Object.keys(values).map((it, index) =>
-      (<Grid.Column key={index}>
-        <MatrixInput onChange={onChangeMaker(index)} value={values[it]}/>
-      </Grid.Column>))}
-  </Grid.Row>;
-
-const Matrix = ({ matrix, onChangeMatrix, className }) => (
-  <Grid columns={3} className={className}>
-    {matrix.map((row, index) =>
-      <MatrixRow key={index} onChangeMaker={onChangeMatrix(index)} values={row}/>
-    )}
-  </Grid>
-);
-
-class HillForm extends Component {
+class HillEncryptForm extends Component {
   state = {
     inputText: '',
     outputText: '',
@@ -66,10 +49,10 @@ class HillForm extends Component {
           {!this.state.isNumeric && <div>
             Matrix should contain only numeric symbols
           </div>}
-          <InputCipher disabled={!this.state.isNumeric}
-                       outputText={this.state.outputText}
-                       inputText={this.state.inputText}
-                       onTextChange={this.onChangeInputText}/>
+          <InputOutputCipher disabled={!this.state.isNumeric}
+                             outputText={this.state.outputText}
+                             inputText={this.state.inputText}
+                             onTextChange={this.onChangeInputText}/>
 
         </Form>
       </div>
@@ -77,4 +60,4 @@ class HillForm extends Component {
   }
 }
 
-export default HillForm;
+export default HillEncryptForm;

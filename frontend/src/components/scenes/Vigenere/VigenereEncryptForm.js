@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { encryptVigenere } from '../api';
+import { encryptVigenere } from '../../../api';
 import { Form, Input } from 'semantic-ui-react';
-import InputCipher from './common/InputOutputCipher';
+import InputOutputCipher from './../../common/InputOutputCipher';
 
-class VigenereForm extends Component {
+class VigenereEncryptForm extends Component {
   state = {
     inputText: '',
     keyword: '',
@@ -27,12 +27,12 @@ class VigenereForm extends Component {
       <div>
         <Form onSubmit={this.onSubmit}>
           <Input placeholder='Keyword' onChange={this.onChange('keyword')}/>
-          <InputCipher outputText={this.state.outputText} inputText={this.state.inputText}
-                       onTextChange={this.onChange('inputText')}/>
+          <InputOutputCipher outputText={this.state.outputText} inputText={this.state.inputText}
+                             onTextChange={this.onChange('inputText')}/>
         </Form>
       </div>
     );
   }
 }
 
-export default VigenereForm;
+export default VigenereEncryptForm;
