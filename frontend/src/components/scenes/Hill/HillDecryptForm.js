@@ -20,8 +20,9 @@ class HillDecryptForm extends Component {
 
   onSubmit = async (e) => {
     e.preventDefault();
-    const { data } = await decryptHill(this.state.inputText, this.state.values);
-    this.setState({ outputText: data.data });
+    decryptHill(this.state.inputText, this.state.values)
+      .then(({ data }) => this.setState({ outputText: data.data }))
+      .catch(() => this.setState({ error: 'Could not get inverse of this matrix by mod' }));
   };
 
   onChangeMatrix = (rowIndex) => (index) => (e) => {
@@ -30,7 +31,11 @@ class HillDecryptForm extends Component {
     this.setState((prevState) => {
       const values = prevState.values.map((row) => [...row]);
       values[rowIndex][index] = value && isValueNumeric ? parseInt(value, 10) : value;
-      return ({ values, isNumeric: isValueNumeric });
+      return ({
+        values,
+        isNumeric: isValueNumeric,
+        error: !isValueNumeric ? 'Matrix should contain only numeric symbols' : ''
+      });
     });
   };
 
@@ -46,9 +51,7 @@ class HillDecryptForm extends Component {
         <Form onSubmit={this.onSubmit}>
           <Matrix onChangeMatrix={this.onChangeMatrix} matrix={this.state.values} className={'hill-form__matrix'}/>
 
-          {!this.state.isNumeric && <div>
-            Matrix should contain only numeric symbols
-          </div>}
+          {this.state.error}
           <InputOutputCipher disabled={!this.state.isNumeric}
                              outputText={this.state.outputText}
                              inputText={this.state.inputText}
