@@ -49,9 +49,3 @@ def decrypt(key_matrix, text, alphabet=string.ascii_lowercase):
         decrypted += ''.join([alphabet[int(i)] for i in indexes_matrix])
 
     return decrypted
-
-#
-# matrix_ = [[2, 4, 5], [9, 2, 1], [3, 17, 7]]
-#
-# print(encrypt(matrix_, 'ATTACK AT DAWN'))
-# print(decrypt(matrix_, encrypt(matrix_, 'ATTACK AT DAWN')))

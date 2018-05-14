@@ -1,5 +1,9 @@
 import numpy as np
 
+class FormatException(Exception):
+    def __init__(self, message):
+        super().__init__()
+        self.message = message
 
 def egcd(a, b):
     if a == 0:
@@ -15,13 +19,16 @@ def get_inverse_by_mod(a, m):
 
 
 def get_inverse_matrix_by_mod(matrix, p):
-    n = len(matrix)
-    matrix = np.matrix(matrix)
-    adj = np.zeros(shape=(n, n))
-    for i in range(0, n):
-        for j in range(0, n):
-            adj[i][j] = ((-1) ** (i + j) * int(round(np.linalg.det(get_minor_matrix(matrix, j, i))))) % p
-    return (get_inverse_by_mod(int(round(np.linalg.det(matrix))), p) * adj) % p
+    try:
+        n = len(matrix)
+        matrix = np.matrix(matrix)
+        adj = np.zeros(shape=(n, n))
+        for i in range(0, n):
+            for j in range(0, n):
+                adj[i][j] = ((-1) ** (i + j) * int(round(np.linalg.det(get_minor_matrix(matrix, j, i))))) % p
+        return (get_inverse_by_mod(int(round(np.linalg.det(matrix))), p) * adj) % p
+    except Exception:
+        raise FormatException('Cannot get inverse matrix by mod.')
 
 
 def get_minor_matrix(matrix, i, j):

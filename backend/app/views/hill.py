@@ -1,4 +1,6 @@
+import json
 from flask import request, jsonify, Response
+from app.ciphers.utils import FormatException
 
 
 def create_hill_views(app, hill_encrypt, hill_decrypt):
@@ -12,8 +14,10 @@ def create_hill_views(app, hill_encrypt, hill_decrypt):
                 raise Exception()
             encrypted = hill_encrypt(matrix, text)
             return jsonify({'data': encrypted})
+        except FormatException as e:
+            return Response(json.dumps({'message': e.message}), status=400, mimetype='application/json')     
         except Exception:
-            return Response('{"message": "Invalid data"}', status=400, mimetype='application/json')
+            return Response('{"message": "Server error"}', status=500, mimetype='application/json')
 
     @app.route('/api/hill/decrypt', methods=['POST'])
     def handle_decrypt_hill_request():
@@ -25,5 +29,7 @@ def create_hill_views(app, hill_encrypt, hill_decrypt):
                 raise Exception()
             decrypted = hill_decrypt(matrix, text)
             return jsonify({'data': decrypted})
+        except FormatException as e:
+            return Response(json.dumps({'message': e.message}), status=400, mimetype='application/json')     
         except Exception:
-            return Response('{"message": "Invalid data"}', status=400, mimetype='application/json')
+            return Response('{"message": "Server error"}', status=500, mimetype='application/json')

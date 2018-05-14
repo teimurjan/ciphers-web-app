@@ -1,11 +1,14 @@
 import string
+from math import gcd
 
-from .utils import get_inverse_by_mod
+from .utils import get_inverse_by_mod, FormatException
 
 
 def encrypt(text, a, b, alphabet=string.ascii_lowercase):
-    encrypted = ''
+    if gcd(a, b) > 1:
+        raise FormatException('a and b must be coprimes.')
 
+    encrypted = ''
     for letter in text.lower():
         index = alphabet.find(letter)
         if index != - 1:
@@ -16,8 +19,10 @@ def encrypt(text, a, b, alphabet=string.ascii_lowercase):
 
 
 def decrypt(encrypted, a, b, alphabet=string.ascii_lowercase):
-    decrypted = ''
+    if gcd(a, b) > 1:
+        raise FormatException('a and b must be coprimes.')
 
+    decrypted = ''
     m = len(alphabet)
 
     for letter in encrypted.lower():
