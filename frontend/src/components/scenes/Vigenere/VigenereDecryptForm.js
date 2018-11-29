@@ -5,8 +5,8 @@ import InputOutputCipher from './../../common/InputOutputCipher';
 
 class VigenereDecryptForm extends Component {
   state = {
-    inputText: '',
-    keyword: '',
+    inputText: 'iswxvi vhx snxh piqt oy huj ttaytg',
+    keyword: 'fortification',
     outputText: ''
   };
 
@@ -26,7 +26,7 @@ class VigenereDecryptForm extends Component {
     return (
       <div>
         <Form onSubmit={this.onSubmit}>
-          <Input placeholder='Keyword' onChange={this.onChange('keyword')}/>
+          <Input placeholder='Keyword' value={this.state.keyword} onChange={this.onChange('keyword')}/>
           <InputOutputCipher outputText={this.state.outputText} inputText={this.state.inputText}
                              onTextChange={this.onChange('inputText')}
                              buttonText={'Decrypt'}/>

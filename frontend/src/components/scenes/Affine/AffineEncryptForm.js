@@ -6,7 +6,7 @@ import { isNumeric } from '../../../utils/number';
 
 class AffineEncryptForm extends Component {
   state = {
-    inputText: '',
+    inputText: 'defend the east wall of the castle',
     outputText: '',
     key: { a: 1, b: 1 }
   };

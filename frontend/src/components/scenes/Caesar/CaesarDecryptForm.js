@@ -5,8 +5,8 @@ import InputOutputCipher from './../../common/InputOutputCipher';
 
 class CaesarDecryptForm extends Component {
   state = {
-    inputText: '',
-    padding: '',
+    inputText: 'efgfoe uif fbtu xbmm pg uif dbtumf',
+    padding: '1',
     outputText: ''
   };
 

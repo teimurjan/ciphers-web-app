@@ -5,8 +5,8 @@ import InputOutputCipher from './../../common/InputOutputCipher';
 
 class CaesarEncryptForm extends Component {
   state = {
-    inputText: '',
-    padding: '',
+    inputText: 'defend the east wall of the castle',
+    padding: '1',
     outputText: ''
   };
 
