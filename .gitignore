@@ -1,5 +1,4 @@
 .DS_Store
-.idea/
 frontend/node_modules/
 frontend/build/
  __pycache__/
